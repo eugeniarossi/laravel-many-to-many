@@ -9,6 +9,8 @@ class Type extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['slug'];
+
     // un type può avere più progetti
     public function project()
     {
