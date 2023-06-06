@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -32,7 +33,10 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all(); // passo i types per poterli visualizzare in create nel select
-        return view('admin.projects.create', compact('types'));
+
+        $technologies = Technology::all();
+
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -55,7 +59,14 @@ class ProjectController extends Controller
 
         // generare slug
         $project->slug = Str::slug($project->title, '-');
+
         $project->save(); // devo salvare lo slug perchè è guarded
+
+        // posso passare le technologies solo dopo che il project è stato salvato
+        if(isset($data['technologies'])) { 
+            // passa le technologies selezionate nel checkbox in projects.create
+            $project->technologies()->sync($data['technologies']);
+        }
 
         return redirect()->route('admin.projects.index')->with('message', "Project created successfully");
         // usiamo redirect invece che restituire una view, perchè stiamo facendo un post verso una pagina
