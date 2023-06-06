@@ -27,26 +27,26 @@
         {{-- /table head --}}
         <tbody>
             {{-- element to repeat --}}
-            @foreach ($technologies as $echnology)
+            @foreach ($technologies as $technology)
             <tr>
-            <th scope="row">{{ $echnology->id }}</th>
-            <td>{{ $echnology->name }}</td>
-            <td>{{ $echnology->slug }}</td>
+            <th scope="row">{{ $technology->id }}</th>
+            <td>{{ $technology->name }}</td>
+            <td>{{ $technology->slug }}</td>
             {{-- actions --}}
             <td>
                 <ul class="list-unstyled d-flex">
                     {{-- show --}}
                     <li>
-                        <a href="{{ route('admin.types.show', $echnology) }}" class="btn btn-sm btn-primary mx-1">Show</a>
+                        <a href="{{ route('admin.technologies.show', $technology) }}" class="btn btn-sm btn-primary mx-1">Show</a>
                     </li>
                     {{-- edit --}}
                     <li>
-                        <a href="{{ route('admin.types.edit', $echnology) }}" class="btn btn-sm btn-warning mx-1">Edit</a>
+                        <a href="{{ route('admin.technologies.edit', $technology) }}" class="btn btn-sm btn-warning mx-1">Edit</a>
                     </li>
                     {{-- delete --}}
                     <li>
                         {{-- button trigger delete modal --}}
-                        <a href="#" class="btn btn-sm btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#type-{{ $echnology->id }}">Delete</a>
+                        <a href="#" class="btn btn-sm btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#type-{{ $technology->id }}">Delete</a>
                     </li>
                 </ul>
             </td>
@@ -54,7 +54,7 @@
             </tr>
 
             {{-- modal --}}
-            <div class="modal fade" id="type-{{ $echnology->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="type-{{ $technology->id }}" tabindex="-1" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -62,11 +62,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    Are you sure you want to delete technology <strong>{{ $echnology->name }}</strong>?
+                    Are you sure you want to delete technology <strong>{{ $technology->name }}</strong>?
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form action="{{ route('admin.types.destroy', $echnology) }}" method="POST">
+                    <form action="{{ route('admin.types.destroy', $technology) }}" method="POST">
                       @csrf
                       @method('DELETE')
                       <button class="btn btn-danger my-1">Delete</button>
