@@ -101,7 +101,10 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all(); // passo i types per poterli visualizzare in create nel select
-        return view('admin.projects.edit', compact('project', 'types'));
+
+        $technologies = Technology::all();
+
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -133,6 +136,16 @@ class ProjectController extends Controller
                 $project->image = null;
             }
         }
+
+        if(isset($data['technologies'])) { 
+            // passa le technologies selezionate nel checkbox in projects.create
+            $project->technologies()->sync($data['technologies']);
+        } else { // se nessula technology è selezionata
+            $project->technologies()->detach();
+        }
+
+        //$technologies = isset($data['technologies']) ? $data['technologies'] : [];
+        //$project->technologies()->sync('technologies');
 
         $project->save(); // devo salvare lo slug perchè è guarded
 

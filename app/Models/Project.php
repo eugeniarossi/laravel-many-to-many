@@ -22,6 +22,6 @@ class Project extends Model
     // il progetto appartiene a più technologies
     public function technologies()
     {
-        return $this->belongsToMany(Technology::class);
+        return $this->belongsToMany(Technology::class)->withTimestamps();
     }
 }
