@@ -66,7 +66,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form action="{{ route('admin.types.destroy', $technology) }}" method="POST">
+                    <form action="{{ route('admin.technologies.destroy', $technology) }}" method="POST">
                       @csrf
                       @method('DELETE')
                       <button class="btn btn-danger my-1">Delete</button>

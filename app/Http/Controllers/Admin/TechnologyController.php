@@ -84,6 +84,9 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        //
+        $old_name = $technology->name;
+        $technology->delete();
+
+        return redirect()->route('admin.technologies.index')->with('message', "Technology $old_name deleted successfully");
     }
 }
