@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) { //nella tabella project
+            
             $table->unsignedBigInteger('type_id')->nullable()->after('id'); // creo il campo type_id, che è' la chiave esterna
 
             $table->foreign('type_id')

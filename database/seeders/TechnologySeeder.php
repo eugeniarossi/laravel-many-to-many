@@ -19,9 +19,9 @@ class TechnologySeeder extends Seeder
     {
         $technologies = ['HTML', 'CSS', 'Scss', 'JS', 'VueJS', 'React', 'Angular', 'PHP', 'Laravel'];
 
-        //Schema::disableForeignKeyConstraints(); // disabilita la chiave esterna
+        Schema::disableForeignKeyConstraints(); // disabilita la chiave esterna
         Technology::truncate(); // svuota la tabella
-        //Schema::enableForeignKeyConstraints(); // riabilita la chiave esterna
+        Schema::enableForeignKeyConstraints(); // riabilita la chiave esterna
 
         foreach ($technologies as $technology) {
             $new_technology = new Technology();
