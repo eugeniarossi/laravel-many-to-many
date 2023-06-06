@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('project_technology', function (Blueprint $table) {
-            $table->id();
+            //$table->id();
 
             // creare campi  project_id e technology_id  - saranno due chiavi esterne
             
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('project_id')->constrained()->cascadeOnDelete(); // se viene eliminato un project elimina il project_id
             $table->foreignId('technology_id')->constrained()->cascadeOnDelete();
 
-            //$table->primary(['project_id', 'technology_id']); // creo una chiave primaria (indice), composta da project_id e technology_id
+            $table->primary(['project_id', 'technology_id']); // creo una chiave primaria (indice), composta da project_id e technology_id
             $table->timestamps();
         });
     }
